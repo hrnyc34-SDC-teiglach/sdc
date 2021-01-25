@@ -1,0 +1,190 @@
+.reviewsListContainer {
+  box-sizing: border-box;
+  width: 100%;
+  font-family: Arial;
+  font-size: 14px;
+  color: #666;
+  position: relative;
+}
+
+.reviewsListHeaderContainer {
+  display: flex;
+  font-size: 18px;
+  margin-top: 1.6em;
+  margin-bottom: 1.5em;
+  font-weight: bold;
+}
+
+.reviewsListHeaderText {
+  margin-right: 0.3em;
+}
+
+.sortSelectContainer {
+  display: flex;
+  border-bottom: 2px solid #666;
+}
+
+.sortSelect {
+  all: initial;
+  font-family: Arial;
+  font-size: 18px;
+  font-weight: bold;
+  color: #666;
+  margin-right: 0.2em;
+}
+
+.svgIconContainer {
+  display: flex;
+}
+
+.svgIcon {
+  align-items: end;
+}
+
+.reviewsListButton {
+  margin-bottom: 1em;
+}
+
+.reviewTile {
+  width: 100%;
+  margin-bottom: 1.5em;
+}
+
+.reviewTileHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.reviewTileSummary {
+  font-size: 16px;
+  font-weight: bold;
+  white-space: nowrap;
+  width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 1em;
+}
+
+.reviewTileBody {
+  margin-bottom: 1em;
+}
+
+.reviewTilePhotoContainer {
+  display: flex;
+}
+
+.reviewTileImage {
+  object-fit: cover;
+  height: 80px;
+  width: 120px;
+  border: 1px solid black;
+  margin: 0 0.5em 1em 0.5em;
+}
+
+.reviewTileImage:hover {
+  cursor: pointer;
+}
+
+.reviewTileRecommendContainer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+.bi-check2-circle {
+  color: green;
+}
+
+.reviewTileRecommendText {
+  margin-left: 5px;
+}
+
+.reviewTileFeedback {
+  background-color: #C8C8C8;
+  color: rgb(71, 71, 71);
+  margin: 0 1em 1em 1em;
+  padding-top: 0.7em;
+  padding-bottom: 0.7em;
+  padding-left: 1em;
+  padding-right: 1em;
+  width: 90%;
+}
+
+.reviewTileFeedbackHeader {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.reviewTileFeedbackResponse {
+  margin-top: 0.7em;
+  padding-left: 2em;
+}
+
+.reviewTileFooterContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1em;
+}
+
+.reviewTileFooterHelpful {
+  font-size: 0.8em;
+  margin-right: 0.8em;
+}
+
+.reviewTileFooterHelpfulStatus:hover {
+  cursor: pointer;
+}
+
+.reviewTileFooterReport {
+  font-size: 0.8em;
+  margin-left: 0.8em;
+}
+
+.reviewTileFooterReport:hover {
+  cursor: pointer;
+}
+
+.reviewTileEndLine {
+  border-bottom: 1.5px solid #666;
+}
+
+.modalImageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalImage {
+  object-fit: cover;
+  width: 60%;
+  height: 80%;
+  background-color: white;
+  border: '2px solid #000';
+  padding: 15px;
+  border: none;
+}
+
+.noReviewsTextContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  width: 100%;
+  position: relative;
+  margin-bottom: 1em;
+}
+
+.noReviewsText {
+  font-size: 18px;
+  text-align: center;
+  align-items: center;
+}
+
+.noReviewsImage {
+  position: absolute;
+  margin: auto;
+  opacity: 0.08;
+  color: red;
+}
