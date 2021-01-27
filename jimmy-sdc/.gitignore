@@ -1,0 +1,33 @@
+## NPM ##
+node_modules
+
+## Compiled files ##
+client/dist/*
+
+## API keys ##
+server/config.js
+
+## ETC ##
+!client/dist/index.html
+!client/dist/styles/
+.cache/
+*.log
+package-lock.json
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+## CSV Files ##
+reviews.csv
+reviewsSample.csv
+characteristics.csv
+characteristicsSample.csv
+reviews_photos.csv
+reviews_photosSample.csv
+characteristic_reviews.csv
+characteristic_reviewsSample.csv
