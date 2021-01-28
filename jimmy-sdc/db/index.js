@@ -15,18 +15,15 @@ if(process.env.MONGO_URL) {
 var db = mongoose.connection;
 
 // reviews schemas here:
-// var pokemonSchema = new mongoose.Schema({
-//   number: ({
-//     type: Number,
-//     unique: true}),
-//   name: ({
-//     type: String,
-//     unique: true}),
-//   types: [String],
-//   imageUrl: String
-// });
+var characteristicsSchema = new mongoose.Schema({
+  id: ({
+    type: Number,
+    unique: true}),
+  product_id: Number,
+  name: String,
+});
 
 // Use schemas to instantiate models:
-// var Pokemon = mongoose.model('Pokemon', pokemonSchema);
+var characteristics = mongoose.model('characteristics', characteristicsSchema);
 
-// module.exports = Pokemon;
+module.exports = db;
