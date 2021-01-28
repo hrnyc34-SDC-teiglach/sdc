@@ -2,7 +2,7 @@
 
 -- CREATE DATABASE IF NOT EXISTS FEC;
 
--- USE FEC;
+USE FEC;
 
 -- CREATE TABLE PRODUCTS (
 --   id INT NOT NULL AUTO_INCREMENT,
@@ -39,6 +39,30 @@
 --   size VARCHAR(40),
 --   quantity INT,
 --   PRIMARY KEY (id),
+--   FOREIGN KEY (style_id) REFERENCES STYLES (id) ON DELETE CASCADE ON UPDATE CASCADE
+-- );
+
+-- CREATE TABLE SKUS (
+--   style_id INT,
+--   XS INT,
+--   S INT,
+--   M INT,
+--   L INT,
+--   XL INT,
+--   XXL INT,
+--   One_Size INT,
+--   s7 INT,
+--   s7d5 INT,
+--   s8 INT,
+--   s8d5 INT,
+--   s9 INT,
+--   s9d5 INT,
+--   s10 INT,
+--   s10d5 INT,
+--   S11 INT,
+--   s11d5 INT,
+--   s12 INT,
+--   PRIMARY KEY (style_id),
 --   FOREIGN KEY (style_id) REFERENCES STYLES (id) ON DELETE CASCADE ON UPDATE CASCADE
 -- );
 

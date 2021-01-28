@@ -1,4 +1,8 @@
 const mysql = require('mysql');
-const config = require('../../config.js');
+const bluebird = require('bluebird');
+const config = require('../env/config.js');
 
-const db = mysql.createConnection(config);
+const connection = mysql.createConnection(config);
+const db = bluebird.promisifyAll(connection, {multiArgs: true});
+
+module.exports = db;
