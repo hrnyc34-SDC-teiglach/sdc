@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '..', 'fec', 'dist')));
 
 app.get("/", function(req, res) {
-  res.status(200).send('Hello World');
+  res.status(200).send('Greetings Earth');
 });
 
 //Routes:
