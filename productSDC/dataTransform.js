@@ -1,6 +1,6 @@
 const db = require('./database/index.js');
 
-db.queryAsync('SELECT * FROM SKUSX WHERE ID BETWEEN 8400001 AND 8600000')
+db.queryAsync('SELECT * FROM SKUSX WHERE ID BETWEEN 26800001 AND 26961739')
   .then(results => {
     for (let result of results[0]) {
       let id = result.id;
