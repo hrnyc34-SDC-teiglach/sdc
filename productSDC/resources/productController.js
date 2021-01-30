@@ -37,8 +37,7 @@ const getProductStyles = (req, res) => {
         result.photos = JSON.parse(result.photos);
         result.skus = JSON.parse(result.skus);
       }
-
-      res.status(200).json(results)
+      res.status(200).json({product_id, results})
     })
     .catch(err => {
       console.error(err);
