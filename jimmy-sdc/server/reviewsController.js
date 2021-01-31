@@ -1,24 +1,28 @@
-var Test = require("../db/index.js");
+var {Reviews} = require("../db/index.js");
 var express = require("express");
 var bodyParser = require("body-parser");
 
 // Complete each of the following controller methods
 exports.retrieve = function(req, res) {
-  res.status(200).send('Hello World')
-  // var newPokemon = `${req.body.name}`;
-  // var newPokemon = new Pokemon(
-  //   {
-  //     number: req.body.number,
-  //     name: req.body.name,
-  //     types: req.body.types,
-  //     imageUrl: req.body.imageUrl,
-  //   }
-  // );
-  // newPokemon.save((err, results)=>{
-  //   if (err) {
-  //     res.status(404).send('error creating pokemon');
-  //   } else {
-  //     res.status(201).json(results);
-  //   }
-  // });
+  //SELECT * FROM reviews WHERE product_id=5
+  Reviews.find({product_id: req.query.product_id})
+  .exec()
+  .then((results)=>{res.status(200).send(results)})
+
+};
+
+exports.retrieveMeta = function(req, res) {
+
+};
+
+exports.addReview = function(req, res) {
+
+};
+
+exports.markAsHelpful = function(req, res) {
+
+};
+
+exports.report = function(req, res) {
+
 };
