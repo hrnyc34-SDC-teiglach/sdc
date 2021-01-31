@@ -2,7 +2,7 @@
 
 -- CREATE DATABASE IF NOT EXISTS FEC;
 
-USE FEC;
+-- USE FEC;
 
 -- CREATE TABLE PRODUCTS (
 --   id INT NOT NULL AUTO_INCREMENT,
@@ -25,6 +25,8 @@ USE FEC;
 --   FOREIGN KEY (product_id) REFERENCES PRODUCTS (id) ON DELETE CASCADE ON UPDATE CASCADE
 -- );
 
+-- CREATE INDEX idx_product_id ON STYLES (product_id);
+
 -- CREATE TABLE RELATED (
 --   id INT NOT NULL AUTO_INCREMENT,
 --   product_id INT,
@@ -32,6 +34,8 @@ USE FEC;
 --   PRIMARY KEY (id),
 --   FOREIGN KEY (product_id) REFERENCES PRODUCTS (id) ON DELETE CASCADE ON UPDATE CASCADE
 -- );
+
+-- CREATE INDEX idx_product_id ON RELATED (product_id);
 
 -- CREATE TABLE SKUSX (
 --   id INT NOT NULL AUTO_INCREMENT,
@@ -41,6 +45,8 @@ USE FEC;
 --   PRIMARY KEY (id),
 --   FOREIGN KEY (style_id) REFERENCES STYLES (id) ON DELETE CASCADE ON UPDATE CASCADE
 -- );
+
+-- CREATE INDEX id_style_id ON SKUSX (style_id);
 
 -- CREATE TABLE SKUS (
 --   style_id INT,
@@ -66,29 +72,6 @@ USE FEC;
 --   FOREIGN KEY (style_id) REFERENCES STYLES (id) ON DELETE CASCADE ON UPDATE CASCADE
 -- );
 
--- CREATE TABLE SKUS (
---   style_id INT,
---   XS INT,
---   S INT,
---   M INT,
---   L INT,
---   XL INT,
---   XXL INT,
---   One_Size INT,
---   s7 INT,
---   s75 INT,
---   s8 INT,
---   s85 INT,
---   s9 INT,
---   s10 INT,
---   s105 INT,
---   S11 INT,
---   s115 INT,
---   s12 INT,
---   PRIMARY KEY (style_id),
---   FOREIGN KEY (style_id) REFERENCES STYLES (id) ON DELETE CASCADE ON UPDATE CASCADE
--- );
-
 -- CREATE TABLE FEATURES (
 --   id INT NOT NULL AUTO_INCREMENT,
 --   product_id INT,
@@ -98,6 +81,8 @@ USE FEC;
 --   FOREIGN KEY (product_id) REFERENCES PRODUCTS (id) ON DELETE CASCADE ON UPDATE CASCADE
 -- );
 
+-- CREATE INDEX idx_product_id ON FEATURES (product_id);
+
 -- CREATE TABLE PHOTOS (
 --   id INT NOT NULL AUTO_INCREMENT,
 --   style_id INT,
@@ -106,3 +91,5 @@ USE FEC;
 --   PRIMARY KEY (id),
 --   FOREIGN KEY (style_id) REFERENCES STYLES (id) ON DELETE CASCADE ON UPDATE CASCADE
 -- );
+
+-- CREATE INDEX idx_style_id ON PHOTOS (style_id);
