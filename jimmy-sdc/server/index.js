@@ -16,6 +16,8 @@ app.use('/reviews', reviewsRouter);
 
 // Attach middleware:
 app.use(bodyParser.json());
+
+//I don't think you need express static here because we're not serving any files in this layer
 app.use(express.static(path.join(__dirname, '..', 'fec', 'dist')));
 
 app.get("/", function(req, res) {
@@ -23,6 +25,6 @@ app.get("/", function(req, res) {
 });
 
 //Routes:
-// app.get('/', pokemonRouter.get);
+app.get('/', reviewsRouter.get);
 
 module.exports = app;

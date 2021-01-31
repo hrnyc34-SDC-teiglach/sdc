@@ -15,7 +15,7 @@ if(process.env.MONGO_URL) {
 var db = mongoose.connection;
 
 // reviews schemas here:
-var characteristicsSchema = new mongoose.Schema({
+var testSchema = new mongoose.Schema({
   id: ({
     type: Number,
     unique: true}),
@@ -23,7 +23,25 @@ var characteristicsSchema = new mongoose.Schema({
   name: String,
 });
 
-// Use schemas to instantiate models:
-var characteristics = mongoose.model('characteristics', characteristicsSchema);
+var reviewsSchema = new mongoose.Schema({
 
-module.exports = db;
+});
+
+var characteristic_reviewsSchema = new mongoose.Schema({
+
+});
+
+var photos_by_reviewSchema = new mongoose.Schema({
+
+});
+
+var characteristicsSchema = new mongoose.Schema({
+
+});
+
+var reviews_photosSchema = new mongoose.Schema({
+
+});
+
+// Use schemas to instantiate models:
+exports.Test = mongoose.model('test', testSchema);

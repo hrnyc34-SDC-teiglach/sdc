@@ -4,7 +4,7 @@ var reviewsController = require("./reviewsController.js");
 // Create route handlers for each of the six methods in pokemonController
 reviewsRouter.route("/");
 
-// pokemonRouter.get("/", pokemonController.retrieve);
+reviewsRouter.get("/", reviewsController.retrieve);
 
 // pokemonRouter.get("/:number", pokemonController.retrieveOne);
 

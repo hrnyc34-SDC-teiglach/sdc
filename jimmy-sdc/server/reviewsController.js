@@ -1,9 +1,10 @@
-// var Pokemon = require("./Pokemon");
+var Test = require("../db/index.js");
 var express = require("express");
 var bodyParser = require("body-parser");
 
 // Complete each of the following controller methods
-exports.find = function(req, res) {
+exports.retrieve = function(req, res) {
+  res.status(200).send('Hello World')
   // var newPokemon = `${req.body.name}`;
   // var newPokemon = new Pokemon(
   //   {
