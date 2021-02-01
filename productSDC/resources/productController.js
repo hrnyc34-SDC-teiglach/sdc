@@ -24,27 +24,11 @@ module.exports = {
         results.features = JSON.parse(results.features)
         res.status(200).json(results)
       })
-      .catch(err => {
-        console.error(err);
-        res.sendStatus(500);
-      })
   },
 
   getProductStyles: (req, res) => {
     const { product_id } = req.params;
-    db.queryAsync(`SELECT styles.id AS style_id, styles.name, styles.sale_price, styles.original_price, styles.default_style AS 'default?', JSON_ARRAYAGG(JSON_OBJECT('thumbnail_url', photos.thumbnail_url, 'url', photos.url)) AS photos, JSON_OBJECTAGG(skusx.id, JSON_OBJECT('quantity', skusx.quantity, 'size', skusx.size)) AS skus FROM styles INNER JOIN photos ON (styles.id = photos.style_id) INNER JOIN skusx ON (styles.id = skusx.style_id) WHERE styles.product_id = ${db.escape(product_id)} GROUP BY styles.id`)
-      .then(results => {
-        results = results[0];
-        for (let result of results) {
-          result.photos = JSON.parse(result.photos);
-          result.skus = JSON.parse(result.skus);
-        }
-        res.status(200).json({product_id, results})
-      })
-      .catch(err => {
-        console.error(err);
-        res.sendStatus(500);
-      })
+    //Working Solution: 2 separate queries involving inner joins, 1 for photos and 1 for skus
     // db.queryAsync(`SELECT styles.id AS style_id, styles.name, styles.sale_price, styles.original_price, styles.default_style AS 'default?', JSON_ARRAYAGG(JSON_OBJECT('thumbnail_url', photos.thumbnail_url, 'url', photos.url)) AS photos FROM styles INNER JOIN photos ON (styles.id = photos.style_id) WHERE styles.product_id = ${db.escape(product_id)} GROUP BY styles.id`)
     //   .then(results => {
     //     results = results[0];
@@ -62,15 +46,38 @@ module.exports = {
     //     console.error(err);
     //     res.sendStatus(500);
     //   })
+
+    //for some reason the photos array objects aggregates duplicates when also aggregating the skus
+    // db.queryAsync(`SELECT styles.id AS style_id, styles.name, styles.sale_price, styles.original_price, styles.default_style AS 'default?', JSON_ARRAYAGG(JSON_OBJECT('thumbnail_url', photos.thumbnail_url, 'url', photos.url)) AS photos, JSON_OBJECTAGG(skusx.id, JSON_OBJECT('quantity', skusx.quantity, 'size', skusx.size)) AS skus FROM styles INNER JOIN photos ON (styles.id = photos.style_id) INNER JOIN skusx ON (styles.id = skusx.style_id) WHERE styles.product_id = ${db.escape(product_id)} GROUP BY styles.id`)
+
+    //Working Solution: 2 sub-queries - 1 sub-query for photos and 1 sub-query for skus
+    // db.queryAsync(`SELECT styles.id AS style_id, styles.name, styles.sale_price, styles.original_price, styles.default_style AS 'default?', (SELECT JSON_ARRAYAGG(JSON_OBJECT('thumbnail_url', photos.thumbnail_url, 'url', photos.url)) FROM photos WHERE styles.id = photos.style_id) AS photos, (SELECT JSON_OBJECTAGG(skusx.id, JSON_OBJECT('quantity', skusx.quantity, 'size', skusx.size)) FROM skusx WHERE styles.id = skusx.style_id) AS skus FROM styles WHERE styles.product_id = ${db.escape(product_id)}`)
+
+    //Working Solution: 1 sub-query for photos and 1 inner join for skus
+    db.queryAsync(`SELECT styles.id AS style_id, styles.name, styles.sale_price, styles.original_price, styles.default_style AS 'default?', (SELECT JSON_ARRAYAGG(JSON_OBJECT('thumbnail_url', photos.thumbnail_url, 'url', photos.url)) FROM photos WHERE styles.id = photos.style_id) AS photos, JSON_OBJECTAGG(skusx.id, JSON_OBJECT('quantity', skusx.quantity, 'size', skusx.size)) AS skus FROM styles INNER JOIN skusx ON (styles.id = skusx.style_id) WHERE styles.product_id = ${db.escape(product_id)} GROUP BY styles.id`)
+      .then(results => {
+        results = results[0];
+        for (let result of results) {
+          result.photos = JSON.parse(result.photos);
+          result.skus = JSON.parse(result.skus);
+        }
+        res.status(200).json({product_id, results})
+      })
+      .catch(err => {
+        console.error(err);
+        res.sendStatus(500);
+      })
+
   },
 
   getRelatedProducts: (req, res) => {
     const { product_id } = req.params;
     db.queryAsync(`SELECT JSON_ARRAYAGG(related_product_id) AS 'related_products' FROM related WHERE related.product_id = ${db.escape(product_id)} GROUP BY product_id`)
       .then(results => {
-        results = results[0][0];
-        results.related_products = JSON.parse(results.related_products);
-        res.status(200).json(results.related_products);
+        // results = results[0][0].related_products;
+        // results = JSON.parse(results);
+        // res.status(200).json(results);
+        res.status(200).json(JSON.parse(results[0][0].related_products))
       })
       .catch(err => {
         console.error(err);
