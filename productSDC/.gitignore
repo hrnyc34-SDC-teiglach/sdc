@@ -1,18 +1,15 @@
 ## NPM ##
 node_modules
 
-## Compiled files ##
-client/dist/*
-
-## API keys ##
+## Sensitive Info ##
 env/config.js
+env/.env
 
 ## ETC ##
-!client/dist/index.html
-!client/dist/styles/
 .cache/
 *.log
 package-lock.json
+.vscode/settings.json
 
 # OS generated files
 .DS_Store
