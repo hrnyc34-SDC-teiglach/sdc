@@ -16,9 +16,7 @@ var db = mongoose.connection;
 
 // reviews schemas here:
 var testSchema = new mongoose.Schema({
-  id: ({
-    type: Number,
-    unique: true}),
+  id: Number,
   product_id: Number,
   name: String
 });
@@ -34,10 +32,22 @@ var reviewsSchema = new mongoose.Schema({
   reported: Number,
   reviewer_name: String,
   reviewer_email: String,
-  helpfulness: Number
-  // ,
-  // photos: [], //subdocuments?
-  // reviews: [] //subdocuments?
+  helpfulness: Number  ,
+  photos: [
+    {
+      id: Number,
+      review_id: Number,
+      url: String
+    }
+  ],
+  reviews: [{
+    id: Number,
+    product_id: Number,
+    name: String,
+    characteristic_id: String,
+    review_id: Number,
+    value: Number
+  }]
 });
 
 var characteristic_reviewsSchema = new mongoose.Schema({

@@ -1,11 +1,16 @@
 var reviewsRouter = require("express").Router();
 var reviewsController = require("./reviewsController.js");
 
-// Create route handlers for each of the six methods in pokemonController
+// Create route handlers
 reviewsRouter.route("/");
 
 //GET /reviews?page=1&count=5&sort='newest'&product_id=5
 reviewsRouter.get("/", reviewsController.retrieve);
+
+// reviewsRouter.get("/", reviewsController.retrieveMaster);
+
+//was able to correctly configure this route
+// reviewsRouter.post("/", reviewsController.testPost);
 
 //GET /reviews/meta?product_id=11001
 reviewsRouter.get("/meta", reviewsController.retrieveMeta);
