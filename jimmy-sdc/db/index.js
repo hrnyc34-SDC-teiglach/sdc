@@ -72,3 +72,8 @@ module.exports = {
   Reviews: mongoose.model('reviews', reviewsSchema)
 }
 
+//From Aharon
+//apparently you can define schemas by specificallygiving it a name as a 3rd argument
+//Reviews: mongoose.model('Review', reviewsSchema, 'reviews')
+//arguments in order : 1) Model name 2) schema to use 3) collection name
+

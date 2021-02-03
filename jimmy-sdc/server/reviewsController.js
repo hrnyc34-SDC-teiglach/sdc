@@ -4,17 +4,32 @@ var bodyParser = require("body-parser");
 
 // Complete each of the following controller methods
 exports.retrieve = function(req, res) {
-  //SELECT * FROM reviews WHERE product_id=5
-  let reviewCount = req.query.page * req.query.count;
+  let page = Number(req.query.page) || 1;
+  let count = Number(req.query.count) || 5;
   Reviews.find()
   .where({product_id: req.query.product_id})
-  .limit(reviewCount)
+  .where({id: {$gte: (page - 1) * count}})
+  .limit(count)
   .exec()
   .then((results)=>{res.status(200).send(results)})
 };
 
 exports.retrieveMeta = function(req, res) {
-
+  Reviews.aggregate([
+    {
+      $match:
+      {
+        product_id: Number(req.query.product_id)
+      }
+    },
+    {
+      $group: {
+        _id: '$rating', count: {$sum:1}
+      }
+    }
+  ])
+  .exec()
+  .then((results)=>{res.status(200).send(results)})
 };
 
 exports.addReview = function(req, res) {
@@ -25,7 +40,6 @@ exports.addReview = function(req, res) {
   //   upset:false})
   //   .exec()
   //   .then((results)=>{res.status(201).send(results)})
-
 };
 
 exports.markAsHelpful = function(req, res) {
