@@ -3,8 +3,8 @@ const { API_TOKEN } = require('../../../env/config.js');
 const Authorization = API_TOKEN || process.env.API_KEY;
 
 // TODO: consider deployment_ e.g. process.env.URL
-// const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc';
-const url = 'localhost:3000';
+const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hrnyc';
+// const url = 'localhost:8080';
 
 const searchEngine = {
 

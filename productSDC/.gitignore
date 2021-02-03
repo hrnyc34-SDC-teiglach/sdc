@@ -4,6 +4,8 @@ node_modules
 ## Sensitive Info ##
 env/config.js
 env/.env
+.dockerignore
+./vscode
 
 ## ETC ##
 .cache/

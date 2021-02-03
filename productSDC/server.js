@@ -8,22 +8,19 @@ require('dotenv').config({path: path.join(__dirname, '.env')})
 
 const app = express();
 
-app.use(cors({
-  origin: ['http://localhost:3333'],
-  credentials: true
-}));
+app.use(cors());
 
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
-// app.get('/', (req, res) => {
-//   res.status(200).send('Hello!');
-// });
+app.get('/', (req, res) => {
+  res.status(200).send('Hello!');
+});
 
 app.use('/products', productRouter);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Server listening on Port: ${PORT}`);
 })
