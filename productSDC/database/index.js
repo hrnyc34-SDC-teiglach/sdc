@@ -4,10 +4,10 @@ const path = require('path');
 require('dotenv').config({path: path.join(__dirname, '../env/.env')})
 
 const connection = mysql.createConnection({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PW,
-  database: process.env.DB_USE
+  host: process.env.MYSQL_HOST,
+  user: process.env.MYSQL_USER,
+  password: process.env.MYSQL_PASSWORD,
+  database: process.env.MYSQL_DATABASE
 });
 const db = bluebird.promisifyAll(connection, {multiArgs: true});
 
