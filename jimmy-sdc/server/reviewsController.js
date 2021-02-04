@@ -33,13 +33,32 @@ exports.retrieveMeta = function(req, res) {
 };
 
 exports.addReview = function(req, res) {
-  // Reviews.findOneAndUpdate(
-  //   {recommend: "true"},
-  //   {recommend: 1},
-  //   {new: true,
-  //   upset:false})
-  //   .exec()
-  //   .then((results)=>{res.status(201).send(results)})
+  let newReview = new Reviews({
+    id:'', //autoincrement
+    product_id: '' //where does this come from? state?
+  })
+  /*
+  handleSubmitReview({product_id: currentProductId, rating, characteristics, recommend, summary, body, name, email, photos})
+
+  product_id = take from state?
+  id = ???
+  date = today
+  reported = 0
+  helpfulness = 0
+
+  rating
+  characteristics:
+  -comfort
+  -quality
+  -length
+  -fit
+  recommend
+  summary
+  body
+  nickname
+  email
+  */
+
 };
 
 exports.markAsHelpful = function(req, res) {
