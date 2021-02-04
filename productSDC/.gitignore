@@ -1,0 +1,22 @@
+## NPM ##
+node_modules
+
+## Sensitive Info ##
+env/config.js
+env/.env
+.dockerignore
+./vscode
+
+## ETC ##
+.cache/
+*.log
+package-lock.json
+.vscode/settings.json
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Trashes
+ehthumbs.db
+Thumbs.db
