@@ -13,12 +13,6 @@ const StarBarList = ({ productRatings, ratingsFilter, handleRatingsFilter, handl
 
   const isMoreThanOneFilter = (ratingsFilter) => {
     let count = 0;
-    // Object.values(ratingsFilter).forEach(ratingValue => {
-    //   if (ratingValue === true) {
-    //     count++;
-    //   }
-    // });
-
     for (let star in ratingsFilter) {
       if (ratingsFilter[star] === true) {
         count++;

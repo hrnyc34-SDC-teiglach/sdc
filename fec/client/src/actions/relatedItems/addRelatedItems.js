@@ -12,6 +12,7 @@ const addRelatedItems = (productId) => {
     return searchEngine.get(`products/${productId}/related`)
 
       .then(res=> {
+        console.log(res.data);
         return dispatch(relatedItemList( res.data ));
       })
 
@@ -38,9 +39,8 @@ const addRelatedItems = (productId) => {
         });
         return Promise.all(carouselList)
           .then(()=>{
-
             console.log('!!!!! Adding data from Full Cycle !!!!!');
-
+            console.log(list)
             return dispatch( relatedItemsListDetail( list ) );
           });
       })
