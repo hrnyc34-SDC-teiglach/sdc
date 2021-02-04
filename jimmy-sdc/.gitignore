@@ -5,7 +5,7 @@ node_modules
 client/dist/*
 
 ## API keys ##
-env/config.js
+server/config.js
 
 ## ETC ##
 !client/dist/index.html
@@ -22,6 +22,12 @@ package-lock.json
 ehthumbs.db
 Thumbs.db
 
-## Random Stuff ##
-Interview.js
-whiteboarding.js
+## CSV Files ##
+reviews.csv
+reviewsSample.csv
+characteristics.csv
+characteristicsSample.csv
+reviews_photos.csv
+reviews_photosSample.csv
+characteristic_reviews.csv
+characteristic_reviewsSample.csv

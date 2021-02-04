@@ -17,6 +17,10 @@ const createCharacteristicsArray = (productCharacteristics, inputRatingOrId) => 
     if (inputRatingOrId === 'rating') {
       //will handle cases where a product's characteristic value property is set to null
       if (productCharacteristics.hasOwnProperty(characteristic) && productCharacteristics[characteristic].value !== null) {
+
+        //if number, use this:
+        // const characteristicValue = productCharacteristics[characteristic].value;
+
         const characteristicValue = Number(productCharacteristics[characteristic].value.slice(0, 3));
         characteristicsArray.push({ characteristic: [characteristic, characteristicValue], characteristicInfo });
         // [{characteristic: [characteristic, characteristicValue], characteristicInfo: ['A size too small', '1/2 a size too small, ...]}]
