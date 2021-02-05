@@ -1,0 +1,19 @@
+services:
+# first start db
+# then start server
+# indicate that server depends on db
+# i guess you create/specify volumes here too?
+  redis:
+    build: redis
+
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/code
+      - logvolume01:/var/log
+    links:
+      - redis
+volumes:
+  logvolume01: {}
