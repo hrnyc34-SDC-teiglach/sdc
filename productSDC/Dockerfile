@@ -3,7 +3,7 @@ FROM node:12.19.0
 # Create app directory
 WORKDIR /usr/src/app
 
-# ARG ARG_DB_HOST=host.docker.internal \
+# ARG ARG_DB_HOST=mysql \
 #     ARG_DB_USER=root \
 #     ARG_DB_PW=YOUR_PASSWORD \
 #     ARG_DB_USE=FEC \

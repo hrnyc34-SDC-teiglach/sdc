@@ -8,26 +8,19 @@ services:
     depends_on:
       - mysql
     container_name: sdc_server
-    restart: unless-stopped
-    env_file: ./env/.env
-    environment:
-      - MYSQL_HOST=$MYSQL_HOST
-      - MYSQL_USER=$MYSQL_USER
-      - MYSQL_PASSWORD=$MYSQL_PASSWORD
-      - MYSQL_DATABASE=$MYSQL_DATABASE
+    env_file:
+      - ./env/.env
     ports:
-      - 9000:8080
-    working_dir: /app
-    command: ''
+      - '9000:8080'
 
   mysql:
-    image: mysql:latest
+    image: mysql:5.7.26
     container_name: sdc_mysql
-    restart: unless-stopped
     env_file: ./env/.env
-    environment:
-      - MYSQL_HOST=$MYSQL_HOST
-      - MYSQL_USER=$MYSQL_USER
-      - MYSQL_PASSWORD=$MYSQL_PASSWORD
-      - MYSQL_DATABASE=$MYSQL_DATABASE
-    port: 3306:3306
+    volumes:
+      - 'sdc-mysql-data:/var/lib/mysql'
+    ports:
+      - '9001:3306'
+
+volumes:
+  sdc-mysql-data:
