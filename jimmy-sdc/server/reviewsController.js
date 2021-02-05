@@ -1,4 +1,4 @@
-var {Reviews} = require("../db/index.js");
+var {Reviews, CharacteristicReviews} = require("../db/index.js");
 var express = require("express");
 var bodyParser = require("body-parser");
 
@@ -14,8 +14,8 @@ exports.retrieve = function(req, res) {
   .then((results)=>{res.status(200).send(results)})
 };
 
-exports.retrieveMeta = function(req, res) {
-  Reviews.aggregate([
+exports.retrieveMeta = async function(req, res) {
+  let ratings = Reviews.aggregate([
     {
       $match:
       {
@@ -24,12 +24,31 @@ exports.retrieveMeta = function(req, res) {
     },
     {
       $group: {
-        _id: '$rating', count: {$sum:1}
+        _id: '$rating',
+        count: {$sum: 1}
       }
     }
   ])
   .exec()
-  .then((results)=>{res.status(200).send(results)})
+
+  let chars = CharacteristicReviews.aggregate([
+    {
+      $match:
+      {
+        product_id: Number(req.query.product_id)
+      }
+    },
+    {
+      $group: {
+        _id: '$name',
+        value: {$avg: '$value'}
+      }
+    }
+  ])
+  .exec()
+
+  let meta = await Promise.all([ratings, chars]);
+  res.status(200).send(meta);
 };
 
 exports.addReview = function(req, res) {
