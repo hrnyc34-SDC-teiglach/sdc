@@ -1,5 +1,8 @@
 var mongoose = require("mongoose");
-var mongoUri = 'mongodb://localhost/reviews';
+// var mongoUri = 'mongodb://localhost/reviews';
+//mongodb, then container name, then db name
+var mongoUri = 'mongodb://localhost/ratingsreviews';
+
 // mongoose.Promise = Promise;
 
 // Connect Mongoose to our local MongoDB via URI specified above
