@@ -21,6 +21,7 @@
     "chai": "^3.5.0",
     "chai-things": "^0.2.0",
     "mocha": "^8.2.1",
+    "nodemon": "^2.0.7",
     "supertest": "^6.0.1",
     "webpack": "^5.11.1",
     "webpack-cli": "^4.3.1"
