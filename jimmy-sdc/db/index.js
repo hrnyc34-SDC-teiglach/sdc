@@ -1,4 +1,5 @@
 var mongoose = require("mongoose");
+//mongodb, then container name, then db name
 var mongoUri = 'mongodb://localhost/ratingsreviews';
 // mongoose.Promise = Promise;
 
