@@ -54,7 +54,12 @@ var reviewsSchema = new mongoose.Schema({
 });
 
 var characteristic_reviewsSchema = new mongoose.Schema({
-
+    id: Number,
+    product_id: Number,
+    name: 'String',
+    characteristic_id: Number,
+    review_id: Number,
+    value: Number
 });
 
 var photos_by_reviewSchema = new mongoose.Schema({
@@ -72,7 +77,8 @@ var reviews_photosSchema = new mongoose.Schema({
 // Use schemas to instantiate models:
 module.exports = {
   Test: mongoose.model('test', testSchema),
-  Reviews: mongoose.model('reviews', reviewsSchema)
+  Reviews: mongoose.model('reviews', reviewsSchema),
+  CharacteristicReviews: mongoose.model('characteristic_reviews', characteristic_reviewsSchema)
 }
 
 //From Aharon
