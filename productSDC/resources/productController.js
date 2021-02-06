@@ -6,7 +6,7 @@ module.exports = {
     //example: if page = 3, the products returned starts at product_id 11 using formula product_id = (5 * page) - 4
     const start = req.query.hasOwnProperty('page') ? (Number(req.query.page) * 5) - 4 : 1;
     const end = req.query.hasOwnProperty('count') ? (start + Number(req.query.count) - 1) : (start + 4);
-    db.queryAsync(`SELECT * FROM products WHERE id BETWEEN ${db.escape(start)} AND ${db.escape(end)}`)
+    db.queryAsync(`SELECT * FROM PRODUCTS WHERE id BETWEEN ${db.escape(start)} AND ${db.escape(end)}`)
       .then(results => {
         res.status(200).json(results[0]);
       })
@@ -18,7 +18,7 @@ module.exports = {
 
   getProductInfo: (req, res) => {
     const { product_id } = req.params;
-    db.queryAsync(`SELECT products.*, JSON_ARRAYAGG(JSON_OBJECT('feature', features.feature, 'value', features.value)) AS features FROM products INNER JOIN features ON (products.id = features.product_id) WHERE products.id = ${db.escape(product_id)} GROUP BY products.id`)
+    db.queryAsync(`SELECT PRODUCTS.*, JSON_ARRAYAGG(JSON_OBJECT('feature', FEATURES.feature, 'value', FEATURES.value)) AS features FROM PRODUCTS INNER JOIN FEATURES ON (PRODUCTS.id = FEATURES.product_id) WHERE PRODUCTS.id = ${db.escape(product_id)} GROUP BY PRODUCTS.id`)
       .then(results => {
         results = results[0][0];
         results.features = JSON.parse(results.features)
@@ -54,7 +54,7 @@ module.exports = {
     // db.queryAsync(`SELECT styles.id AS style_id, styles.name, styles.sale_price, styles.original_price, styles.default_style AS 'default?', (SELECT JSON_ARRAYAGG(JSON_OBJECT('thumbnail_url', photos.thumbnail_url, 'url', photos.url)) FROM photos WHERE styles.id = photos.style_id) AS photos, (SELECT JSON_OBJECTAGG(skusx.id, JSON_OBJECT('quantity', skusx.quantity, 'size', skusx.size)) FROM skusx WHERE styles.id = skusx.style_id) AS skus FROM styles WHERE styles.product_id = ${db.escape(product_id)}`)
 
     //Working Solution: 1 sub-query for photos and 1 inner join for skus
-    db.queryAsync(`SELECT styles.id AS style_id, styles.name, styles.sale_price, styles.original_price, styles.default_style AS 'default?', (SELECT JSON_ARRAYAGG(JSON_OBJECT('thumbnail_url', photos.thumbnail_url, 'url', photos.url)) FROM photos WHERE styles.id = photos.style_id) AS photos, JSON_OBJECTAGG(skusx.id, JSON_OBJECT('quantity', skusx.quantity, 'size', skusx.size)) AS skus FROM styles INNER JOIN skusx ON (styles.id = skusx.style_id) WHERE styles.product_id = ${db.escape(product_id)} GROUP BY styles.id`)
+    db.queryAsync(`SELECT STYLES.id AS style_id, STYLES.name, STYLES.sale_price, STYLES.original_price, STYLES.default_style AS 'default?', (SELECT JSON_ARRAYAGG(JSON_OBJECT('thumbnail_url', PHOTOS.thumbnail_url, 'url', PHOTOS.url)) FROM PHOTOS WHERE STYLES.id = PHOTOS.style_id) AS photos, JSON_OBJECTAGG(SKUSX.id, JSON_OBJECT('quantity', SKUSX.quantity, 'size', SKUSX.size)) AS skus FROM STYLES INNER JOIN SKUSX ON (STYLES.id = SKUSX.style_id) WHERE STYLES.product_id = ${db.escape(product_id)} GROUP BY STYLES.id`)
       .then(results => {
         results = results[0];
         for (let result of results) {
@@ -72,7 +72,7 @@ module.exports = {
 
   getRelatedProducts: (req, res) => {
     const { product_id } = req.params;
-    db.queryAsync(`SELECT JSON_ARRAYAGG(related_product_id) AS 'related_products' FROM related WHERE related.product_id = ${db.escape(product_id)} GROUP BY product_id`)
+    db.queryAsync(`SELECT JSON_ARRAYAGG(related_product_id) AS 'related_products' FROM RELATED WHERE RELATED.product_id = ${db.escape(product_id)} GROUP BY product_id`)
       .then(results => {
         // results = results[0][0].related_products;
         // results = JSON.parse(results);
