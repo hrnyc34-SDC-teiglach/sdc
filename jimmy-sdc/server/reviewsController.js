@@ -31,6 +31,22 @@ exports.retrieveMeta = async function(req, res) {
   ])
   .exec()
 
+  let recs = Reviews.aggregate([
+    {
+      $match:
+      {
+        product_id: Number(req.query.product_id)
+      }
+    },
+    {
+      $group: {
+        _id: '$recommend',
+        count: {$sum: 1}
+      }
+    }
+  ])
+  .exec()
+
   let chars = CharacteristicReviews.aggregate([
     {
       $match:
@@ -47,8 +63,12 @@ exports.retrieveMeta = async function(req, res) {
   ])
   .exec()
 
-  let meta = await Promise.all([ratings, chars]);
-  res.status(200).send(meta);
+  let meta = await Promise.all([ratings, recs, chars]);
+  res.status(200).send({
+    ratings:{...meta[0]},
+    recs:{...meta[1]},
+    characteristics:{...meta[2]}
+  });
 };
 
 exports.addReview = function(req, res) {
