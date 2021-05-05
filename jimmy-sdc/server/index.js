@@ -24,6 +24,10 @@ app.get("/", function(req, res) {
   res.status(200).send('Greetings Earth');
 });
 
+app.get("/loaderio-63aa568769c3a4cd542e05120ba971ee.txt", function(req, res) {
+  res.status(200).send('loaderio-63aa568769c3a4cd542e05120ba971ee');
+});
+
 //Routes:
 app.get('/', reviewsRouter.get);
 
