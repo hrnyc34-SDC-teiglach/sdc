@@ -1,19 +1,29 @@
+# version: "3.9" (supposedly optional)
+
 services:
 # first start db
 # then start server
 # indicate that server depends on db
 # i guess you create/specify volumes here too?
-  redis:
-    build: redis
 
   web:
     build: .
+    # or do I need to refer to the Dockerfile in the server folder?
     ports:
-      - "3000:3000"
+      # - "3000:3000"
+      - "80:3000"
+      #I believe this needs to connect 80 to 3000 if I want to deploy on an EC2
+
+  mongo:
+    image: mongo
+    ports:
+      - 27017:27017
     volumes:
       - .:/code
       - logvolume01:/var/log
-    links:
-      - redis
+      # named volume config goes here
+
 volumes:
   logvolume01: {}
+  # named volume config goes here too
+  # do I need the braces?
