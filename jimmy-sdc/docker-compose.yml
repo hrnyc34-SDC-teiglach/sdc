@@ -5,17 +5,17 @@ services:
 # then start server
 # indicate that server depends on db
 # i guess you create/specify volumes here too?
-mongo:
-  container_name: sdcdb
-  # build: should I used a Dockerfile?
-  image: mongo
-  ports:
-    - "27017:27017"
-  volumes:
-    - sdc:/data/db
-    # named volume config goes here
+  mongo:
+    container_name: sdcdb
+    # build: should I used a Dockerfile?
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - sdc:/data/db
+      # named volume config goes here
 
-  web:
+  ratingsreviewsapi:
     container_name: ratingsreviewsapi
     build: .
     # or do I need to refer to the Dockerfile in the server folder?
