@@ -19,11 +19,10 @@ services:
     ports:
       - 27017:27017
     volumes:
-      - .:/code
-      - logvolume01:/var/log
+      - sdc:/data/db
       # named volume config goes here
 
 volumes:
-  logvolume01: {}
+  sdc
   # named volume config goes here too
-  # do I need the braces?
+  # I've seen sdc, sdc:, and sdc:{}, not sure which one is correct
