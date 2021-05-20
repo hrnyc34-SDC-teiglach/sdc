@@ -30,6 +30,6 @@ mongo:
       # not sure what this does, this was in Trent's docker-compose file
 
 volumes:
-  sdc
+  sdc:
   # named volume config goes here too
   # I've seen sdc, sdc:, and sdc:{}, not sure which one is correct
