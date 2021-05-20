@@ -5,22 +5,29 @@ services:
 # then start server
 # indicate that server depends on db
 # i guess you create/specify volumes here too?
+mongo:
+  container_name: sdcdb
+  # build: should I used a Dockerfile?
+  image: mongo
+  ports:
+    - "27017:27017"
+  volumes:
+    - sdc:/data/db
+    # named volume config goes here
 
   web:
+    container_name: ratingsreviewsapi
     build: .
     # or do I need to refer to the Dockerfile in the server folder?
     ports:
       # - "3000:3000"
       - "80:3000"
       #I believe this needs to connect 80 to 3000 if I want to deploy on an EC2
-
-  mongo:
-    image: mongo
-    ports:
-      - 27017:27017
-    volumes:
-      - sdc:/data/db
-      # named volume config goes here
+    depends_on:
+      - "sdcdb"
+    links:
+      - "sdcdb"
+      # not sure what this does, this was in Trent's docker-compose file
 
 volumes:
   sdc
