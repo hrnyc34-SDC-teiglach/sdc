@@ -6,7 +6,7 @@ services:
 # indicate that server depends on db
 # i guess you create/specify volumes here too?
   mongo:
-    container_name: sdcdb
+    # container_name: sdcdb
     # build: should I used a Dockerfile?
     image: mongo
     ports:
@@ -24,9 +24,9 @@ services:
       - "80:3000"
       #I believe this needs to connect 80 to 3000 if I want to deploy on an EC2
     depends_on:
-      - "sdcdb"
+      - "mongo"
     links:
-      - "sdcdb"
+      - "mongo"
       # not sure what this does, this was in Trent's docker-compose file
 
 volumes:
