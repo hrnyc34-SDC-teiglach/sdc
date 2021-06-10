@@ -10,7 +10,7 @@ services:
     # build: should I used a Dockerfile?
     image: mongo
     ports:
-      - "27017:27017"
+      - "27018:27017"
     volumes:
       - sdc:/data/db
       # named volume config goes here
@@ -20,8 +20,8 @@ services:
     build: .
     # or do I need to refer to the Dockerfile in the server folder?
     ports:
-      # - "3000:3000"
-      - "80:3000"
+      - "3000:3000"
+      #- "80:3000"
       #I believe this needs to connect 80 to 3000 if I want to deploy on an EC2
     depends_on:
       - "mongo"
@@ -31,5 +31,5 @@ services:
 
 volumes:
   sdc:
-  # named volume config goes here too
+  # named volume config goes here too 
   # I've seen sdc, sdc:, and sdc:{}, not sure which one is correct
