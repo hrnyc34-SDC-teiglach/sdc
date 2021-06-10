@@ -1,10 +1,10 @@
 var mongoose = require("mongoose");
-var mongoUri = 'mongodb://localhost/reviews';
+// var mongoUri = 'mongodb://localhost/reviews';
 // var mongoUri = 'mongodb://localhost/ratingsreviews';
 
 //use this for Docker containerization
 //'mongodb', then container name, then db/cluster name
-// var mongoUri = 'mongodb://mongo/reviews';
+var mongoUri = 'mongodb://mongo/reviews';
 
 // mongoose.Promise = Promise;
 
