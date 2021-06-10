@@ -8,7 +8,11 @@ services:
   mongo:
     # container_name: sdcdb
     # build: should I used a Dockerfile?
-    image: mongo
+    # image: mongo
+
+    # definitely going to need a Dockerfile for the MongoDB configuration
+    build: ./db/
+
     ports:
       - "27018:27017"
     volumes:
