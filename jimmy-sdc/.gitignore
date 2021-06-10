@@ -31,6 +31,7 @@ reviews_photos.csv
 reviews_photosSample.csv
 characteristic_reviews.csv
 characteristic_reviewsSample.csv
+./db/csv/
 
 ## loader.io Token ##
 loaderio-63aa568769c3a4cd542e05120ba971ee.txt
