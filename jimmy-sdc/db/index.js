@@ -1,7 +1,10 @@
 var mongoose = require("mongoose");
-// var mongoUri = 'mongodb://localhost/reviews';
-//mongodb, then container name, then db name
-var mongoUri = 'mongodb://localhost/ratingsreviews';
+var mongoUri = 'mongodb://localhost/reviews';
+// var mongoUri = 'mongodb://localhost/ratingsreviews';
+
+//use this for Docker containerization
+//'mongodb', then container name, then db/cluster name
+// var mongoUri = 'mongodb://mongo/reviews';
 
 // mongoose.Promise = Promise;
 
@@ -10,9 +13,13 @@ var mongoUri = 'mongodb://localhost/ratingsreviews';
 // mongoose.connect(mongoUri, {useNewUrlParser: true, useUnifiedTopology: true});
 
 if(process.env.MONGO_URL) {
-  mongoose.connect(process.env.MONGO_URL, {useNewUrlParser: true, useUnifiedTopology: true});
+  mongoose.connect(process.env.MONGO_URL, {useNewUrlParser: true, useUnifiedTopology: true})
+    .then(results => {console.log('connection success')})
+    .catch(err=>{console.log(err)});
 } else {
-  mongoose.connect(mongoUri, {useNewUrlParser: true, useUnifiedTopology: true});
+  mongoose.connect(mongoUri, {useNewUrlParser: true, useUnifiedTopology: true})
+    .then(results => {console.log('connection success')})
+    .catch(err=>{console.log(err)});
 }
 
 var db = mongoose.connection;
