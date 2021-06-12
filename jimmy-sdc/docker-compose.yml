@@ -13,6 +13,8 @@ services:
     # definitely going to need a Dockerfile for the MongoDB configuration
     build: ./db/
 
+    image: jimmyko360/sdcmongo:1.0
+
     ports:
       - "27018:27017"
     volumes:
@@ -23,6 +25,9 @@ services:
     container_name: ratingsreviewsapi
     build: .
     # or do I need to refer to the Dockerfile in the server folder?
+
+    image: jimmyko360/ratingsreviewsapi:1.0
+
     ports:
       - "3000:3000"
       #- "80:3000"
